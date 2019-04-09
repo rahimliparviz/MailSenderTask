@@ -1,0 +1,33 @@
+*****Authentication*****
+
+	Authenticasiya prosesi 'AuthController' de vasitesile heyata kecirilir.
+User register olduqdan sonra ona mail gonderilir. Verificasiya 'linki'emailden
+elde etmek olar, elave olaraq linki maile daxil olmadan elde etmek ucun test 'confirm'
+viewsununda icinde qeyd etmisem (sadece test meqsedi ile ve prosesi suretlendirmek ucun)
+
+*****Mail Receivers*****
+
+	User 'dashboard' viewda mail gonderceyi 'receiver' lerin listini gorur onlare edit ve delete ede bilir d
+elave olaraq 'add receiver' buttonu ile yeni receiverler elave ede biler.
+
+*****Mail Sending*****
+
+	User formdaki muvafiq inputlari doldurduqdan sonra 'SendEmailController'
+'MailContent' ve 'Notification' obyektleri yaradilir. 'MailContent' obyekti mailin subjecti,
+contenti,gonderleceyi gun ve saat haqqinda melumatlari saxlayir.Notification obyekti ise 
+MailContentle Receiverler arasinda elaqelendirici obyektdir, beleki burada muvafiq
+Mailin hansi receiverlere gonderileceyi ile bagli melumat saxlanilir.
+	Mail gondermek prosesi 'Cron' un komeyi il? h?yata kecirilir. 'Cron' hergun saat "00:00" 
+da isl?yir v? "checkNotification" classi vasit?si il? heftenin hansi gunu oldugu tapilir
+daha sonra heftenin o gunune gonderilmeli olan mailler seclir ve maillerin
+gonderilme vaxtina gore 'SendEmail' job -u dispatch edilir.SendMail de ise
+ora gonderilmir maile gore Notifications table indan muvafiq receiverler getirilir ve her birine
+mail gonderilir.
+
+
+***************Elave*****************
+Mail funksionalligini elde etmek ucun env fayliqda uygun konfiqurasiyalari deyismek lazimdir
+	
+
+
+
